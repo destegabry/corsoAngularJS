@@ -3,6 +3,7 @@
   <head>
     <title>Corso AngularJS</title>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script type="text/javascript" src="https://code.angularjs.org/1.4.7/i18n/angular-locale_it-it.js"></script>
     <script type="text/javascript" src="data-provider.js"></script>
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="popover.js"></script>
@@ -23,11 +24,10 @@
       </div>
       <div ng-hide="error">
         <ul>
-          <li ng-repeat="person in addrBook" ng-class="{'odd': $odd }">
-            <popover content="{{person.birthdate}}">
-              {{person.name}}
-              {{person.surname}}
-            </popover>
+          <li ng-repeat="person in addrBook" 
+              ng-class="{'odd': $odd }" 
+              popover="person.birthdate|date:'d MMM yy'"
+              text="{{person.name}} {{person.surname}}">
           </li>
         </ul>
       </div>
