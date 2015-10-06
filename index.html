@@ -19,6 +19,30 @@
   </head>
   <body ng-app="bitmamaCorsoAngular">
     <div ng-controller="mainCtrl" ng-class="{'has-error': error}">
+      <form name="personAddForm" ng-submit="addPerson(newPerson)">
+        <p>
+          <label for="name">Nome</label>
+          <input type="text" name="name" ng-model="newPerson.name" required>
+        </p>
+        <p>
+          <label for="surname">Surname</label>
+          <input type="text" name="surname" ng-model="newPerson.surname" required>
+        </p>
+        <p>
+          <label for="birthdate">Data di nascita</label>
+          <input type="date" name="birthdate" ng-model="newPerson.birthdate" required>
+        </p>
+        <p>
+          <label for="gender">Genere</label>
+          <select name="gender" ng-model="newPerson.gender">
+            <option value="f">Femmina</option>
+            <option value="m">Maschio</option>
+          </select>
+        </p>
+        <p>
+          <button type="submit" ng-disabled="!personAddForm.$valid">Aggiungi</button>
+        </p>
+      </form>
       <div ng-show="error">
         {{error.msg}}
       </div>
