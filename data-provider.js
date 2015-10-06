@@ -4,7 +4,7 @@ angular.module('bitmamaDataProvider', [])
     var addressBookService = {
       get: function () {
         var deferred = $q.defer();
-        if (!_addrBook && _addrBook.length === 0) {
+        if (!_addrBook || _addrBook.length === 0) {
           $http.get('/data.json')
             .then(function (response) {
               _addrBook = response.data;
