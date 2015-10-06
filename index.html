@@ -5,10 +5,32 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
     <script type="text/javascript" src="data-provider.js"></script>
     <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="popover.js"></script>
+    <style type="text/css">
+    .odd {
+      background: #ddd;
+    }
+    .has-error {
+      background: #ff0000;
+      color: white;
+    }
+    </style>
   </head>
   <body ng-app="bitmamaCorsoAngular">
-    <div ng-controller="mainCtrl">
-
+    <div ng-controller="mainCtrl" ng-class="{'has-error': error}">
+      <div ng-show="error">
+        {{error.msg}}
+      </div>
+      <div ng-hide="error">
+        <ul>
+          <li ng-repeat="person in addrBook" ng-class="{'odd': $odd }">
+            <popover content="{{person.birthdate}}">
+              {{person.name}}
+              {{person.surname}}
+            </popover>
+          </li>
+        </ul>
+      </div>
     </div>
   </body>
 </html>

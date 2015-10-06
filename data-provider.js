@@ -10,7 +10,7 @@ angular.module('bitmamaDataProvider', [])
               _addrBook = response.data;
               deferred.resolve(_addrBook);
             }, function (error) {
-              deferred.reject(error);
+              deferred.reject(error.data);
             });
         } else {
           deferred.resolve(_addrBook);
