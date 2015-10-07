@@ -61,8 +61,23 @@
         {{error.msg}}
       </div>
       <div ng-hide="error">
+        <div>
+          Order by:
+          <button class="btn" 
+                  ng-class="{'btn-primary': orderPredicate==='name'}"
+                  ng-click="orderBy('name')">Name</button>
+          <button class="btn" 
+                  ng-class="{'btn-primary': orderPredicate==='surname'}"
+                  ng-click="orderBy('surname')">Surname</button>
+          <button class="btn" 
+                  ng-class="{'btn-primary': orderPredicate==='birthdate'}"
+                  ng-click="orderBy('birthdate')">Birthdate</button>
+          <button class="btn" 
+                  ng-class="{'btn-primary': orderPredicate==='gender'}"
+                  ng-click="orderBy('gender')">Gender</button>
+        </div>
         <ul>
-          <li ng-repeat="person in addrBook" 
+          <li ng-repeat="person in (addrBook|orderBy:orderPredicate:reverse)" 
               ng-class="{'odd': $odd }" 
               popover="person.birthdate|date:'d MMM yy'">
             {{person.name}} {{person.surname}}
