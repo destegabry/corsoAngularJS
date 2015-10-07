@@ -3,14 +3,17 @@
   <head>
     <title>Corso AngularJS</title>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-    <script type="text/javascript" src="https://code.angularjs.org/1.4.7/i18n/angular-locale_it-it.js"></script>
-    <script type="text/javascript" src="vendor/ui-bootstrap-0.13.4.min.js"></script>
+<!--     <script type="text/javascript" src="https://code.angularjs.org/1.4.7/i18n/angular-locale_it-it.js"></script>
+ -->    <script type="text/javascript" src="vendor/ui-bootstrap-0.13.4.min.js"></script>
     <script type="text/javascript" src="vendor/ui-bootstrap-tpls-0.13.4.min.js"></script>
     <script type="text/javascript" src="data-provider.js"></script>
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="popover.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <style type="text/css">
+    body {
+      padding: 20px 0;
+    }
     .odd {
       background: #ddd;
     }
@@ -33,7 +36,13 @@
         </p>
         <p>
           <label for="birthdate">Data di nascita</label>
-          <input type="date" name="birthdate" ng-model="newPerson.birthdate" required>
+          <input type="text" 
+                 name="birthdate" 
+                 datepicker-popup 
+                 ng-model="newPerson.birthdate" 
+                 ng-focus="isOpen = true"
+                 is-open="isOpen" 
+                 required>
         </p>
         <p>
           <label for="gender">Genere</label>
@@ -45,6 +54,8 @@
         <p>
           <button type="submit" ng-disabled="!personAddForm.$valid">Aggiungi</button>
         </p>
+        <pre>{{newPerson|json}}</pre>
+        <pre>{{newPerson.birthdate|date:'HH:mm:ss dd-MM-yy'}}</pre>
       </form>
       <div ng-show="error">
         {{error.msg}}
