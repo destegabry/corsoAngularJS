@@ -25,7 +25,7 @@
   </head>
   <body ng-app="bitmamaCorsoAngular">
     <div class="container" ng-controller="mainCtrl" ng-class="{'has-error': error}">
-      <form name="personAddForm" ng-submit="addPerson(newPerson)">
+      <form name="personAddForm" ng-submit="savePerson(newPerson)">
         <p>
           <label for="name">Nome</label>
           <input type="text" name="name" ng-model="newPerson.name" required>
@@ -52,7 +52,7 @@
           </select>
         </p>
         <p>
-          <button type="submit" ng-disabled="!personAddForm.$valid">Aggiungi</button>
+          <button type="submit" ng-disabled="!personAddForm.$valid">Salva</button>
         </p>
         <pre>{{newPerson|json}}</pre>
         <pre>{{newPerson.birthdate|date:'HH:mm:ss dd-MM-yy'}}</pre>
@@ -78,9 +78,13 @@
         </div>
         <ul>
           <li ng-repeat="person in (addrBook|orderBy:orderPredicate:reverse)" 
-              ng-class="{'odd': $odd }" 
-              popover="person.birthdate|date:'d MMM yy'">
-            {{person.name}} {{person.surname}}
+              ng-class="{'odd': $odd }">
+            <span popover="person.birthdate|date:'d MMM yy'">
+              {{person.name}} {{person.surname}}
+            </span>
+            <button class="btn btn-warning" 
+                    type="button" 
+                    ng-click="$parent.editPerson(person)">Modifica</button>
           </li>
         </ul>
       </div>

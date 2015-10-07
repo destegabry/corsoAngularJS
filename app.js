@@ -18,8 +18,23 @@ app.controller('mainCtrl', function ($scope, addressBook) {
       };
     });
 
-  $scope.addPerson = function (person) {
-    $scope.addrBook.push(person);
+  $scope.editPerson = function (person) {
+    $scope.newPerson = angular.copy(person);
+    for (var i = 0; i < $scope.addrBook.length; i++) {
+      if (angular.equals(person, $scope.addrBook[i])) {
+        $scope.selectedPerson = i;
+        break;
+      }
+    };
+  };
+
+  $scope.savePerson = function (person) {
+    if (!angular.isUndefined($scope.selectedPerson)) {
+      $scope.addrBook[$scope.selectedPerson] = person;
+      delete $scope.selectedPerson;
+    } else {
+      $scope.addrBook.push(person);
+    }
     $scope.newPerson = {};
   }
 });
