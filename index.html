@@ -46,9 +46,9 @@
         </p>
         <p>
           <label for="gender">Genere</label>
-          <select name="gender" ng-model="newPerson.gender">
-            <option value="f">Femmina</option>
-            <option value="m">Maschio</option>
+          <select name="gender" 
+                  ng-options="gender.value as gender.label for gender in genders"
+                  ng-model="newPerson.gender">
           </select>
         </p>
         <p>
@@ -85,6 +85,9 @@
             <button class="btn btn-warning" 
                     type="button" 
                     ng-click="$parent.editPerson(person)">Modifica</button>
+                    <button class="btn btn-danger" 
+                            type="button" 
+                            ng-click="$parent.deletePerson(person)">Elimina</button>
           </li>
         </ul>
       </div>

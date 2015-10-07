@@ -2,6 +2,17 @@ var app = angular.module('bitmamaCorsoAngular', ['bitmamaDataProvider', 'ui.boot
 
 app.controller('mainCtrl', function ($scope, addressBook) {
 
+  $scope.genders = [{
+    value: 'f',
+    label: 'Femmina'
+  }, {
+    value: 'm',
+    label: 'Maschio'
+  }, {
+    value: 't',
+    label: 'Tuscolano'
+  }];
+
   $scope.orderBy = function (predicate) {
     $scope.reverse = $scope.orderPredicate !== predicate ? false : !$scope.reverse;
     $scope.orderPredicate = predicate;
@@ -9,8 +20,10 @@ app.controller('mainCtrl', function ($scope, addressBook) {
 
   addressBook.get()
     .then(function (addrBook) {
-      $scope.newPerson = {};
       $scope.addrBook = addrBook;
+      $scope.newPerson = {
+        gender: $scope.addrBook[0].gender
+      };
     }, function (error) {
       $scope.error = {
         msg: 'Unexpected error',
@@ -27,7 +40,13 @@ app.controller('mainCtrl', function ($scope, addressBook) {
       }
     };
   };
-
+  $scope.deletePerson = function (person) {
+    for (var i = 0; i < $scope.addrBook.length; i++) {
+      if (angular.equals(person, $scope.addrBook[i])) {
+        $scope.addrBook.splice(i,1);
+      }
+    };
+  };
   $scope.savePerson = function (person) {
     if (!angular.isUndefined($scope.selectedPerson)) {
       $scope.addrBook[$scope.selectedPerson] = person;
