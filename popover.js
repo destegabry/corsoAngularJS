@@ -3,8 +3,8 @@ angular.module('bitmamaCorsoAngular')
     return {
       restrict: 'A',
       templateUrl: 'popover-tpl.html',
+      transclude: true,
       scope: {
-        text: '@',
         tooltip: '=popover'
       }
     };

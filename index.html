@@ -64,8 +64,8 @@
         <ul>
           <li ng-repeat="person in addrBook" 
               ng-class="{'odd': $odd }" 
-              popover="person.birthdate|date:'d MMM yy'"
-              text="{{person.name}} {{person.surname}}">
+              popover="person.birthdate|date:'d MMM yy'">
+            {{person.name}} {{person.surname}}
           </li>
         </ul>
       </div>
