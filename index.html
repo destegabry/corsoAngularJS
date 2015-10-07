@@ -4,9 +4,12 @@
     <title>Corso AngularJS</title>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
     <script type="text/javascript" src="https://code.angularjs.org/1.4.7/i18n/angular-locale_it-it.js"></script>
+    <script type="text/javascript" src="vendor/ui-bootstrap-0.13.4.min.js"></script>
+    <script type="text/javascript" src="vendor/ui-bootstrap-tpls-0.13.4.min.js"></script>
     <script type="text/javascript" src="data-provider.js"></script>
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="popover.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <style type="text/css">
     .odd {
       background: #ddd;
@@ -18,7 +21,7 @@
     </style>
   </head>
   <body ng-app="bitmamaCorsoAngular">
-    <div ng-controller="mainCtrl" ng-class="{'has-error': error}">
+    <div class="container" ng-controller="mainCtrl" ng-class="{'has-error': error}">
       <form name="personAddForm" ng-submit="addPerson(newPerson)">
         <p>
           <label for="name">Nome</label>

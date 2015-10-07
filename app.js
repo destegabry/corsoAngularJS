@@ -1,4 +1,4 @@
-var app = angular.module('bitmamaCorsoAngular', ['bitmamaDataProvider']);
+var app = angular.module('bitmamaCorsoAngular', ['bitmamaDataProvider', 'ui.bootstrap']);
 
 app.controller('mainCtrl', function ($scope, addressBook) {
   addressBook.get()
