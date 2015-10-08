@@ -1,0 +1,32 @@
+<form name="personAddForm" ng-submit="savePerson(newPerson)">
+  <p>
+    <label for="name">Nome</label>
+    <input type="text" name="name" ng-model="newPerson.name" required>
+  </p>
+  <p>
+    <label for="surname">Surname</label>
+    <input type="text" name="surname" ng-model="newPerson.surname" required>
+  </p>
+  <p>
+    <label for="birthdate">Data di nascita</label>
+    <input type="text" 
+           name="birthdate" 
+           datepicker-popup 
+           ng-model="newPerson.birthdate" 
+           ng-focus="isOpen = true"
+           is-open="isOpen" 
+           required>
+  </p>
+  <p>
+    <label for="gender">Genere</label>
+    <select name="gender" 
+            ng-options="gender.value as gender.label for gender in genders|orderBy:'value'"
+            ng-model="newPerson.gender">
+    </select>
+  </p>
+  <p>
+    <button type="submit" ng-disabled="!personAddForm.$valid">Salva</button>
+  </p>
+  <pre>{{newPerson|json}}</pre>
+  <pre>{{newPerson.birthdate|date:'HH:mm:ss dd-MM-yy'}}</pre>
+</form>

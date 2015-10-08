@@ -1,0 +1,34 @@
+<div ng-show="error">
+  {{error.msg}}
+</div>
+<div ng-hide="error">
+  <div>
+    Order by:
+    <button class="btn" 
+            ng-class="{'btn-primary': orderPredicate==='name'}"
+            ng-click="orderBy('name')">Name</button>
+    <button class="btn" 
+            ng-class="{'btn-primary': orderPredicate==='surname'}"
+            ng-click="orderBy('surname')">Surname</button>
+    <button class="btn" 
+            ng-class="{'btn-primary': orderPredicate==='birthdate'}"
+            ng-click="orderBy('birthdate')">Birthdate</button>
+    <button class="btn" 
+            ng-class="{'btn-primary': orderPredicate==='gender'}"
+            ng-click="orderBy('gender')">Gender</button>
+  </div>
+  <ul>
+    <li ng-repeat="person in (addrBook|orderBy:orderPredicate:reverse)" 
+        ng-class="{'odd': $odd }">
+      <span popover="person.birthdate|date:'d MMM yy'">
+        {{person.name}} {{person.surname}}
+      </span>
+      <button class="btn btn-warning" 
+              type="button" 
+              ng-click="$parent.editPerson(person)">Modifica</button>
+              <button class="btn btn-danger" 
+                      type="button" 
+                      ng-click="$parent.deletePerson(person)">Elimina</button>
+    </li>
+  </ul>
+</div>

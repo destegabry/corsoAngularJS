@@ -3,12 +3,15 @@
   <head>
     <title>Corso AngularJS</title>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script type="text/javascript" src="https://code.angularjs.org/1.4.7/angular-route.min.js"></script>
     <script type="text/javascript" src="https://code.angularjs.org/1.4.7/i18n/angular-locale_it-it.js"></script>
     <script type="text/javascript" src="vendor/ui-bootstrap-0.13.4.min.js"></script>
     <script type="text/javascript" src="vendor/ui-bootstrap-tpls-0.13.4.min.js"></script>
-    <script type="text/javascript" src="data-provider.js"></script>
     <script type="text/javascript" src="app.js"></script>
-    <script type="text/javascript" src="popover.js"></script>
+    <script type="text/javascript" src="data-provider.js"></script>
+    <script type="text/javascript" src="components/popover/popover.js"></script>
+    <script type="text/javascript" src="components/list/list.js"></script>
+    <script type="text/javascript" src="components/add/add.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <style type="text/css">
     body {
@@ -17,80 +20,11 @@
     .odd {
       background: #ddd;
     }
-    .has-error {
-      background: #ff0000;
-      color: white;
-    }
     </style>
   </head>
   <body ng-app="bitmamaCorsoAngular">
-    <div class="container" ng-controller="mainCtrl" ng-class="{'has-error': error}">
-      <form name="personAddForm" ng-submit="savePerson(newPerson)">
-        <p>
-          <label for="name">Nome</label>
-          <input type="text" name="name" ng-model="newPerson.name" required>
-        </p>
-        <p>
-          <label for="surname">Surname</label>
-          <input type="text" name="surname" ng-model="newPerson.surname" required>
-        </p>
-        <p>
-          <label for="birthdate">Data di nascita</label>
-          <input type="text" 
-                 name="birthdate" 
-                 datepicker-popup 
-                 ng-model="newPerson.birthdate" 
-                 ng-focus="isOpen = true"
-                 is-open="isOpen" 
-                 required>
-        </p>
-        <p>
-          <label for="gender">Genere</label>
-          <select name="gender" 
-                  ng-options="gender.value as gender.label for gender in genders"
-                  ng-model="newPerson.gender">
-          </select>
-        </p>
-        <p>
-          <button type="submit" ng-disabled="!personAddForm.$valid">Salva</button>
-        </p>
-        <pre>{{newPerson|json}}</pre>
-        <pre>{{newPerson.birthdate|date:'HH:mm:ss dd-MM-yy'}}</pre>
-      </form>
-      <div ng-show="error">
-        {{error.msg}}
-      </div>
-      <div ng-hide="error">
-        <div>
-          Order by:
-          <button class="btn" 
-                  ng-class="{'btn-primary': orderPredicate==='name'}"
-                  ng-click="orderBy('name')">Name</button>
-          <button class="btn" 
-                  ng-class="{'btn-primary': orderPredicate==='surname'}"
-                  ng-click="orderBy('surname')">Surname</button>
-          <button class="btn" 
-                  ng-class="{'btn-primary': orderPredicate==='birthdate'}"
-                  ng-click="orderBy('birthdate')">Birthdate</button>
-          <button class="btn" 
-                  ng-class="{'btn-primary': orderPredicate==='gender'}"
-                  ng-click="orderBy('gender')">Gender</button>
-        </div>
-        <ul>
-          <li ng-repeat="person in (addrBook|orderBy:orderPredicate:reverse)" 
-              ng-class="{'odd': $odd }">
-            <span popover="person.birthdate|date:'d MMM yy'">
-              {{person.name}} {{person.surname}}
-            </span>
-            <button class="btn btn-warning" 
-                    type="button" 
-                    ng-click="$parent.editPerson(person)">Modifica</button>
-                    <button class="btn btn-danger" 
-                            type="button" 
-                            ng-click="$parent.deletePerson(person)">Elimina</button>
-          </li>
-        </ul>
-      </div>
+    <div class="container">
+      <div ng-view></div>
     </div>
   </body>
 </html>
