@@ -28,12 +28,11 @@
       <span popover="person.birthdate|date:'d MMM yy'">
         {{person.name}} {{person.surname}}
       </span>
-      <button class="btn btn-warning" 
+      <a class="btn btn-warning" 
+         ng-href="#/{{person.id}}/edit">Modifica</a>
+      <button class="btn btn-danger" 
               type="button" 
-              ng-click="$parent.editPerson(person)">Modifica</button>
-              <button class="btn btn-danger" 
-                      type="button" 
-                      ng-click="$parent.deletePerson(person)">Elimina</button>
+              ng-click="$parent.deletePerson(person)">Elimina</button>
     </li>
   </ul>
 </div>

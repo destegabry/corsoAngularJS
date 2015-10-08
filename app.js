@@ -10,5 +10,9 @@ app.config(function($routeProvider) {
       templateUrl: 'components/add/add.html',
       controller: 'addCtrl'
     })
+    .when('/:id/edit/', {
+      templateUrl: 'components/add/add.html',
+      controller: 'addCtrl'
+    })
     .otherwise('/list');
 });
