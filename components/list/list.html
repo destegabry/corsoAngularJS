@@ -2,7 +2,12 @@
   {{error.msg}}
 </div>
 <div ng-hide="error">
-  <div>
+  <div class="row">
+    <div class="col-xs-12">
+      <a class="btn btn-success" href="#/add">Aggiungi</a>
+    </div>
+  </div>
+  <div class="row">
     Order by:
     <button class="btn" 
             ng-class="{'btn-primary': orderPredicate==='name'}"

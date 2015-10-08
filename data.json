@@ -1,26 +1,19 @@
 [{
+  "id": 0,
   "name": "Stefano",
   "surname": "Cortese",
   "birthdate": "1977-11-17",
   "gender": "m"
 }, {
+  "id": 1,
   "name": "Thomas",
   "surname": "Cecconi",
   "birthdate": "1982-11-22",
   "gender": "m"
 }, {
+  "id": 2,
   "name": "Serena",
   "surname": "Beddini",
-  "birthdate": "1990-10-08",
-  "gender": "f"
-}, {
-  "name": "A",
-  "surname": "Cognome",
-  "birthdate": "1990-10-08",
-  "gender": "f"
-}, {
-  "name": "B",
-  "surname": "Cognome",
   "birthdate": "1990-10-08",
   "gender": "f"
 }]
