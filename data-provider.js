@@ -26,14 +26,17 @@ angular.module('bitmamaDataProvider', [])
         }
         return deferred.promise;
     };
+    var _getUserIndex = function (id) {
+      for (var i = 0; i < _addrBook.length; i++) {
+        if(_addrBook[i].id == id){
+          return i;
+        }
+      }
+      return -1;
+    }
     var _getUserOrAddrBook = function (id) {
       if (id) {
-        for (var i = 0; i < _addrBook.length; i++) {
-          if(_addrBook[i].id == id){
-            return _addrBook[i];
-          }
-        }
-        return null;
+        return _addrBook[_getUserIndex(id)];
       } else {
         return _addrBook;
       }
@@ -44,16 +47,15 @@ angular.module('bitmamaDataProvider', [])
         return ADDR_BOOK_GENDERS;
       },
       add: function (person) {
-        var promise = _loadAddressBook();
-        promise.then(function (addrBook) {
+        return _loadAddressBook()
+          .then(function (addrBook) {
             if (!person.id) {
               person.id = $window.Math.round($window.Math.random() * 1000);
+              addrBook.push(person);
+            } else {
+              addrBook[_getUserIndex(person.id)] = person;
             }
-            addrBook.push(person);
-          }, function () { 
-            console.log('errore!'); 
           });
-        return promise;
       },
       get: function (id) {
         return _loadAddressBook(id);
@@ -61,12 +63,7 @@ angular.module('bitmamaDataProvider', [])
       delete: function (id){
         var promise = _loadAddressBook();
         promise.then(function(addrBook){
-          for (var i =0; i < addrBook.length; i++){
-            if(addrBook[i].id == id){
-              addrBook.splice(i, 1);
-              break;
-            }
-          }
+          addrBook.splice(_getUserIndex(id), 1);
         });
         return promise; 
 
