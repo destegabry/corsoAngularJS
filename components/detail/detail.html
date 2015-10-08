@@ -1,0 +1,11 @@
+<table class="table table-striped">
+  <tbody>
+    <tr ng-repeat="(key, value) in person" ng-if="key !=='id'">
+      <th>{{key}}</th>
+      <td>{{value}}</td>
+    </tr>
+  </tbody>
+</table>
+<a href="#/list" class="btn btn-default">Indietro</a>
+<a href="#/edit" class="btn btn-warning">Modifica</a>
+<button class="btn btn-danger" ng-click="delete()">Elimina</button>

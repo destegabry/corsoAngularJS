@@ -4,10 +4,12 @@ angular.module('bitmamaCorsoAngular')
 
     $scope.editMode = angular.isDefined($routeParams.id);
 
-    addressBook.get($routeParams.id)
-      .then(function (person) {
-        $scope.newPerson = angular.copy(person);
-      });
+    if ($scope.editMode) {
+      addressBook.get($routeParams.id)
+        .then(function (person) {
+          $scope.newPerson = angular.copy(person);
+        });
+    }
 
     $scope.savePerson = function (person) {
       addressBook.add(person)
