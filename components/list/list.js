@@ -20,9 +20,6 @@ angular.module('bitmamaCorsoAngular')
     addressBook.get()
       .then(function (addrBook) {
         $scope.addrBook = addrBook;
-        $scope.newPerson = {
-          gender: $scope.addrBook[0].gender
-        };
       }, function (error) {
         $scope.error = {
           msg: 'Unexpected error',
